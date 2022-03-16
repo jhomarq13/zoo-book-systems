@@ -1,0 +1,19 @@
+{
+  "name": "cypress-zoo-book-systems",
+  "version": "1.0.0",
+  "description": "Zoo Book Systems Test Automation",
+  "main": "index.js",
+  "scripts": {
+    "cy": "npx cypress open",
+    "cy:run": "npx cypress run --record --key  84e32d32-4095-4d2d-80ef-f35b3632c538 --browser chrome"
+  },
+  "author": "Gio Marquez",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^9.4.1",
+    "cypress-cucumber-preprocessor": "^4.3.1"
+  },
+  "cypress-cucumber-preprocessor": {
+    "step_definitions": "cypress/support/step_definitions/**"
+  }
+}

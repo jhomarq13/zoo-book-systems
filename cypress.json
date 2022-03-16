@@ -1,0 +1,28 @@
+{
+  "testFiles": [
+    "**/*.feature"
+  ],
+  "integrationFolder": "cypress/scenarios",
+  "defaultCommandTimeout": 60000,
+  "trashAssetsBeforeRuns": false,
+  "viewportWidth": 1440,
+  "viewportHeight": 900,
+  "chromeWebSecurity": false,
+  "env": {
+    "testEnv": "PROD",
+    "PROD": {
+      "url": "https://zoobooksystems.com"
+    },
+    "STG": {
+      "url": "https://zoobooksystems.com"
+    },
+    "SIT": {
+      "url": "https://zoobooksystems.com"
+    },
+    "DEV": {
+      "url": "https://zoobooksystems.com"
+    }
+  },
+  "projectId": "k4yjxo",
+  "$schema": "https://on.cypress.io/cypress.schema.json"
+}
