@@ -4,25 +4,14 @@ import { elementsNavigation } from '../fixtures/page_elements/navigation';
 const envmnt = Cypress.env('testEnv');
 const implicitShortWait = 500;
 
-Cypress.Commands.add('userVisitsTheGageMathersWebsite', () => {
+Cypress.Commands.add('userVisitsTheZooBookSystemsWebsite', () => {
     cy.clearCookies();
     cy.visit(Cypress.env(envmnt).url);
 })
 
-Cypress.Commands.add('verifyUserIsInTheGageMathersHomepage', (locale) => {
-    cy.get(elementsNavigation.heading).then((thisElement) => {
-        const heading = thisElement.text();
-        cy.wait(implicitShortWait);
+Cypress.Commands.add('verifyUserIsTakenToTheZoobookSystemsHomepage', () => {
+    expect(cy.get(elementsNavigation.homepageTitle).should('be.visible'));
 
-        if (locale.toLowerCase() === 'english') {
-            expect(heading).to.eq("PERSONAL INJURY LAWYERS");
-        } else if (locale.toLowerCase() === 'spanish') {
-            expect(heading).contains("ABOGADOS ESPECIALIZADOS")
-        } else {
-            cy.log("Not found")
-        }
-
-    });
 });
 
 Cypress.Commands.add('userNavigatesToAPage', (page) => {
@@ -34,21 +23,16 @@ Cypress.Commands.add('userNavigatesToAPage', (page) => {
     });
 });
 
-Cypress.Commands.add('userChangesLocale', (locale) => {
-    cy.get(elementsNavigation.locale).each(($menu, index) => {
-        cy.get($menu).invoke('attr', 'alt').then((values) => {
-            if (values === locale) {
-                cy.log(index);
-                cy.get(elementsNavigation.locale).eq(index).click();
-            }
-        })
+Cypress.Commands.add('verifyUserIsTakenToASpecificPage', (page) => {
+    cy.get(elementsNavigation.title).then((thisElement) => {
+        const pageTitle = thisElement.text();
+        expect(pageTitle).equals(page);
     });
 });
 
-Cypress.Commands.add('verifyUserIsTakenToASpecificPage', (locale) => {
-    cy.get(elementsNavigation.title).then((thisElement) => {
-        const pageTitle = thisElement.text();
-        expect(pageTitle).equals(locale);
+Cypress.Commands.add('verifyPageHeadingIsDisplayed', (text) => {
+    cy.get(elementsNavigation.pageHeading).then((thisPageHeading) => {
+        const actualPageHeading = thisPageHeading.text();
+        expect(actualPageHeading).to.contain(text);
     })
-
-})
+});
